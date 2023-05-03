@@ -1,4 +1,4 @@
-##Instalacion
+## Instalacion
 
 1. git clone https://github.com/EduardMancia48/Laravel-Graphql-.git
 2. cd Laravel-Graphql-

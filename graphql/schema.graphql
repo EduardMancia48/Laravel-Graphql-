@@ -1,0 +1,46 @@
+type Query {
+  hello(name: String) :String!
+    authors: [Author!]! @all
+    Books: [Book!]! @all
+}
+  
+type Book {
+  id: ID!
+  title: String!
+  content: String!
+  author: Author!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+  
+type Author {
+  id: ID!
+  name: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Books: [Book!]!
+}
+
+type Mutation {
+  createAuthor(name: String!): Author! @create
+}
+
+type Mutation {
+  createAuthor(input: CreateAuthorInput! @spread): Author! @create
+   createBook(input: CreateBookInput! @spread): Book! @create
+}
+
+input CreateAuthorInput {
+  name: String!
+}
+
+input CreateBookInput {
+  title: String!
+  content: String!
+  author: CreateAuthorBelongsTo
+}
+
+input CreateAuthorBelongsTo {
+  connect: ID
+  create: CreateAuthorInput
+}
